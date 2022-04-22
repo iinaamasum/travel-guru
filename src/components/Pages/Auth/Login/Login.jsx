@@ -1,6 +1,7 @@
 import React from 'react';
 import Footer from '../../../Shared/Footer/Footer';
 import Nav from '../../../Shared/Nav/Nav';
+import SocialAuth from '../SocialAuth/SocialAuth';
 
 const Login = () => {
   return (
@@ -50,11 +51,19 @@ const Login = () => {
         <button className="text-white bg-purple-500 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg">
           Log In
         </button>
-        <div className="flex w-full mx-4 justify-between text-blue-600">
-          <hr className="opacity-50" />
-          <p>or</p>
-          <hr />
+        <div className="flex w-full mt-2 justify-between text-blue-600">
+          <div
+            style={{ height: '2px' }}
+            className="bg-black bottom-2 w-full mt-3 mx-2"
+          ></div>
+          <p className="">or</p>
+          <div
+            style={{ height: '2px' }}
+            className="bg-black bottom-2 w-full mt-3 mx-2"
+          ></div>
         </div>
+
+        <SocialAuth />
       </div>
       <Footer />
     </>
