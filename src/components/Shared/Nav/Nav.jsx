@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { HiMenuAlt1 } from 'react-icons/hi';
 import { MdCloseFullscreen } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../../images/icons/logo.svg';
 
 const Nav = () => {
   const [open, setOpen] = useState(false);
+  const navigation = useNavigate();
 
   const links = [
     { id: 1, name: 'Home', path: '/' },
-    { id: 2, name: 'Destination', path: '/destination' },
-    { id: 3, name: 'Blog', path: '/blog' },
-    { id: 4, name: 'Contact', path: '/contact' },
+    { id: 2, name: 'Booking', path: '/booking' },
+    { id: 3, name: 'Destination', path: '/destination' },
+    { id: 4, name: 'Blog', path: '/blog' },
+    { id: 5, name: 'Contact', path: '/contact' },
   ];
   return (
     <div className="px-2 sm:px-4 py-2.5 rounded text-white">
@@ -32,7 +34,7 @@ const Nav = () => {
               <input
                 type="text"
                 id="email-adress-icon"
-                className="block mt-0 md:mt-3 p-2 pl-10 w-full rounded-lg  text-black sm:text-sm bg-gray-300 "
+                className="block mt-0 md:mt-3 p-2 pl-10 w-full rounded-lg  text-slate-200 placeholder:text-slate-300 sm:text-sm bg-transparent "
                 placeholder="Search your Destination..."
               />
             </div>
@@ -68,11 +70,17 @@ const Nav = () => {
                   {link.name}
                 </Link>
               ))}
-              <button className="px-3 py-2 text-black rounded-lg bg-slate-300 hover:bg-slate-200 w-full mt-3">
-                Register
-              </button>
-              <button className="px-3 py-2 text-black rounded-lg bg-slate-300 hover:bg-slate-200 w-full mt-3">
+              <button
+                onClick={() => navigation('/login')}
+                className="px-3 py-2 text-black rounded-lg bg-slate-300 hover:bg-slate-200 w-full mt-3"
+              >
                 Log In
+              </button>
+              <button
+                onClick={() => navigation('/register')}
+                className="px-3 py-2 text-black rounded-lg bg-slate-300 hover:bg-slate-200 w-full mt-3"
+              >
+                Register
               </button>
             </span>
           </div>

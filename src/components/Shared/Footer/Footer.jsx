@@ -5,9 +5,10 @@ import logo from '../../../images/icons/logo.svg';
 const Footer = () => {
   const links = [
     { id: 1, name: 'Home', path: '/' },
-    { id: 2, name: 'Destination', path: '/destination' },
-    { id: 3, name: 'Blog', path: '/blog' },
-    { id: 4, name: 'Contact', path: '/contact' },
+    { id: 2, name: 'Booking', path: '/booking' },
+    { id: 3, name: 'Destination', path: '/destination' },
+    { id: 4, name: 'Blog', path: '/blog' },
+    { id: 5, name: 'Contact', path: '/contact' },
   ];
   return (
     <div className="bg-black">
