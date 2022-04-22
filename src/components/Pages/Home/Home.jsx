@@ -8,15 +8,15 @@ import Nav from '../../Shared/Nav/Nav';
 const Home = () => {
   return (
     <div
-      style={{ backgroundImage: `url(${bgImg})`, height: '100vh' }}
-      className="bg-no-repeat bg-cover bg-center"
+      style={{ backgroundImage: `url(${bgImg})` }}
+      className="bg-no-repeat bg-cover bg-center "
     >
       <div
         style={{ backdropFilter: 'brightness(.35)' }}
-        className="backdrop-brightness- h-full"
+        className="h-full px-4 sm:px-0"
       >
         <Nav />
-        <div className="flex items- mt-10 md:mt-40">
+        <div className="flex items- py-10 md:py-40">
           {' '}
           <div
             style={{ maxWidth: '1400px' }}
@@ -34,7 +34,7 @@ const Home = () => {
               </p>
               <button
                 type="button"
-                className="text-white bg-[#FF9119] hover:bg-[#FF9119]/80 focus:ring-4 focus:outline-none focus:ring-[#FF9119]/50 font-medium rounded-lg text-sm py-2.5 text-center inline-flex items-center dark:hover:bg-[#FF9119]/80 dark:focus:ring-[#FF9119]/40 mr-2 mb-2 mt-4 px-10"
+                className="text-white bg-[#FF9119] hover:bg-[#FF9119]/80 focus:ring-4 focus:outline-none focus:ring-[#FF9119]/50 font-medium rounded-lg text-sm py-2.5 text-center inline-flex items-center dark:hover:bg-[#FF9119]/80 dark:focus:ring-[#FF9119]/40 mr-2 mb-4 mt-4 px-10"
               >
                 Booking
               </button>
