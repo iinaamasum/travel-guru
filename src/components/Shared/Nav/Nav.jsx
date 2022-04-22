@@ -4,8 +4,9 @@ import { HiMenuAlt1 } from 'react-icons/hi';
 import { MdCloseFullscreen } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../../images/icons/logo.svg';
+import logo2 from '../../../images/logo2.png';
 
-const Nav = () => {
+const Nav = ({ children }) => {
   const [open, setOpen] = useState(false);
   const navigation = useNavigate();
 
@@ -16,15 +17,24 @@ const Nav = () => {
     { id: 4, name: 'Blog', path: '/blog' },
     { id: 5, name: 'Contact', path: '/contact' },
   ];
+  console.log(children);
   return (
-    <div className="px-2 sm:px-4 py-2.5 rounded text-white">
+    <div
+      className={`px-2 sm:px-4 py-2.5 rounded ${
+        children === 'col' ? 'text-black' : 'text-white'
+      } `}
+    >
       <nav
         style={{ maxWidth: '1400px' }}
         className="mx-auto container sticky top-0 flex items-center justify-center"
       >
         <div className="container flex flex-wrap justify-between items-center mx-auto">
           <Link to="/" className="flex items-center">
-            <img className="h-10" src={logo} alt="" />
+            {children !== 'col' ? (
+              <img className="h-10" src={logo} alt="" />
+            ) : (
+              <img className="h-10" src={logo2} alt="" />
+            )}
           </Link>
           <div className="flex md:order-2">
             <div className="hidden relative mr-3 md:mr-0 md:block">
@@ -63,7 +73,7 @@ const Nav = () => {
             <span className="flex w-full flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium items-center">
               {links.map((link) => (
                 <Link
-                  className="block mt-0 md:mt-3 py-2 pr-4 pl-3 rounded md:bg-transparent text-white md:p-0 "
+                  className="block mt-0 md:mt-3 py-2 pr-4 pl-3 rounded md:bg-transparent md:p-0 "
                   to={link.path}
                   key={link.id}
                 >
