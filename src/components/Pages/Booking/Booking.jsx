@@ -10,6 +10,7 @@ const Booking = () => {
   curr2.setDate(curr2.getDate());
   var date1 = curr.toISOString().substr(0, 10);
   var date2 = curr2.toISOString().substr(0, 10);
+
   return (
     <div>
       <div

@@ -1,14 +1,18 @@
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { FaSearch } from 'react-icons/fa';
 import { HiMenuAlt1 } from 'react-icons/hi';
 import { MdCloseFullscreen } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
+import auth from '../../../firebase.init';
 import logo from '../../../images/icons/logo.svg';
 import logo2 from '../../../images/logo2.png';
 
 const Nav = ({ children }) => {
   const [open, setOpen] = useState(false);
   const navigation = useNavigate();
+  const [user, loading, error] = useAuthState(auth);
 
   const links = [
     { id: 1, name: 'Home', path: '/' },
@@ -17,7 +21,6 @@ const Nav = ({ children }) => {
     { id: 4, name: 'Blog', path: '/blog' },
     { id: 5, name: 'Contact', path: '/contact' },
   ];
-  console.log(children);
   return (
     <div
       className={`px-2 sm:px-4 py-2.5 rounded ${
@@ -64,6 +67,7 @@ const Nav = ({ children }) => {
               )}
             </button>
           </div>
+
           <div
             className={`justify-between items-center w-full md:flex md:w-auto md:order-1 ${
               open ? 'flex' : 'hidden'
@@ -80,18 +84,40 @@ const Nav = ({ children }) => {
                   {link.name}
                 </Link>
               ))}
-              <button
-                onClick={() => navigation('/login')}
-                className="px-3 py-2 text-black rounded-lg bg-slate-300 hover:bg-slate-200 w-full mt-3"
-              >
-                Log In
-              </button>
-              <button
-                onClick={() => navigation('/register')}
-                className="px-3 py-2 text-black rounded-lg bg-slate-300 hover:bg-slate-200 w-full mt-3"
-              >
-                Register
-              </button>
+              {user ? (
+                <div className="w-full flex justify-center items-center">
+                  <button
+                    onClick={() => signOut(auth)}
+                    className="px-1 py-2 text-black rounded-lg bg-slate-300 hover:bg-slate-200 w-full mt-3 mr-4"
+                  >
+                    Log Out
+                  </button>
+                  <div className="mt-3">
+                    <img
+                      title={user.displayName}
+                      style={{ height: '40px', width: '60px' }}
+                      className="rounded-full cursor-pointer"
+                      src={user && user?.reloadUserInfo?.photoUrl}
+                      alt=""
+                    />
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <button
+                    onClick={() => navigation('/login')}
+                    className="px-3 py-2 text-black rounded-lg bg-slate-300 hover:bg-slate-200 w-full mt-3"
+                  >
+                    Log In
+                  </button>
+                  <button
+                    onClick={() => navigation('/register')}
+                    className="px-3 py-2 text-black rounded-lg bg-slate-300 hover:bg-slate-200 w-full mt-3"
+                  >
+                    Register
+                  </button>
+                </>
+              )}
             </span>
           </div>
         </div>

@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useLocation, useNavigate } from 'react-router-dom';
+import auth from '../../../../firebase.init';
 import Footer from '../../../Shared/Footer/Footer';
 import Nav from '../../../Shared/Nav/Nav';
 import SocialAuth from '../SocialAuth/SocialAuth';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [user] = useAuthState(auth);
+  const from = location.state?.from?.pathname || '/';
+
+  useEffect(() => {
+    if (user) {
+      navigate(from);
+    }
+  }, [user]);
+
   return (
     <>
       <Nav>col</Nav>
@@ -36,7 +50,12 @@ const Login = () => {
         </div>
         <div className="flex mb-5 text-sm justify-between">
           <div className="flex justify-center items-center">
-            <input className="mr-3" type="checkbox" name="" id="" />
+            <input
+              className="mr-3 cursor-pointer"
+              type="checkbox"
+              name=""
+              id=""
+            />
             <p>Remember Me</p>
           </div>
           <div className="">
@@ -48,20 +67,17 @@ const Login = () => {
             </p>
           </div>
         </div>
+        <div className="mb-1">
+          <p>
+            Don't have an account?{' '}
+            <span className="font-semibold text-blue-500 underline">
+              Create account
+            </span>
+          </p>
+        </div>
         <button className="text-white bg-purple-500 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg">
           Log In
         </button>
-        <div className="flex w-full mt-2 justify-between text-blue-600">
-          <div
-            style={{ height: '2px' }}
-            className="bg-black bottom-2 w-full mt-3 mx-2"
-          ></div>
-          <p className="">or</p>
-          <div
-            style={{ height: '2px' }}
-            className="bg-black bottom-2 w-full mt-3 mx-2"
-          ></div>
-        </div>
 
         <SocialAuth />
       </div>

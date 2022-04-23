@@ -1,6 +1,7 @@
 import React from 'react';
 import Footer from '../../../Shared/Footer/Footer';
 import Nav from '../../../Shared/Nav/Nav';
+import SocialAuth from '../SocialAuth/SocialAuth';
 
 const Register = () => {
   return (
@@ -46,10 +47,18 @@ const Register = () => {
             placeholder="Your Password"
           />
         </div>
-
+        <div className="">
+          <p>
+            Already have an account?{' '}
+            <span className="font-semibold text-blue-500 underline">
+              Log in
+            </span>
+          </p>
+        </div>
         <button className="text-white bg-purple-500 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg">
           Register
         </button>
+        <SocialAuth />
       </div>
       <Footer />
     </>
