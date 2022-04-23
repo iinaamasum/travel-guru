@@ -127,6 +127,7 @@ const Login = () => {
               name="email"
               className="w-full bg-white rounded border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               placeholder="Your Email"
+              required
             />
             <p className="text-red-700 text-xs pt-1 pl-1">
               {errors?.emailError}
@@ -161,7 +162,31 @@ const Login = () => {
               <p>
                 Forgot Password?{' '}
                 <span
-                  onClick={() => sendPasswordResetEmail(userInfo.email)}
+                  onClick={() => {
+                    sendPasswordResetEmail(userInfo.email);
+                    if (userInfo.email) {
+                      toast.success(
+                        'Reset link sent via email!!! please check',
+                        {
+                          icon: '✅',
+                          style: {
+                            borderRadius: '10px',
+                            background: '#333',
+                            color: '#fff',
+                          },
+                        }
+                      );
+                    } else {
+                      toast.error('Enter your email!!!', {
+                        icon: '❌',
+                        style: {
+                          borderRadius: '10px',
+                          background: '#333',
+                          color: '#fff',
+                        },
+                      });
+                    }
+                  }}
                   className="underline text-blue-500 cursor-pointer font-bold"
                 >
                   Reset Now

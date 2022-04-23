@@ -3,7 +3,7 @@ import {
   useAuthState,
   useCreateUserWithEmailAndPassword,
 } from 'react-firebase-hooks/auth';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../../firebase.init';
 import Footer from '../../../Shared/Footer/Footer';
 import Nav from '../../../Shared/Nav/Nav';
@@ -145,9 +145,12 @@ const Register = () => {
           <div className="">
             <p>
               Already have an account?{' '}
-              <span className="font-semibold text-blue-500 underline">
+              <Link
+                to="/login"
+                className="font-semibold text-blue-500 underline"
+              >
                 Log in
-              </span>
+              </Link>
             </p>
           </div>
           <input
